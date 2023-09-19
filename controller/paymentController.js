@@ -14,8 +14,9 @@ class paymentController {
     }
 
     payment_create = async (req, res) => {
-
+console.log(req.body);
         const { amount, userId } = req.body
+
         globals.set('userId', userId)
         try {
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
@@ -29,9 +30,11 @@ class paymentController {
             }, {
                 headers: await this.bkash_headers()
             })
+            console.log(data);
             return res.status(200).json({ bkashURL: data.bkashURL })
         } catch (error) {
             return res.status(401).json({ error: error.message })
+            console.log(error.message)
         }
 
     }

@@ -17,10 +17,10 @@ class middleware {
                     password: process.env.bkash_password,
                 }
             })
-
+       
             globals.set('id_token', data.id_token, { protected: true })
-
             next()
+
         } catch (error) {
             return res.status(401).json({ error: error.message })
         }
