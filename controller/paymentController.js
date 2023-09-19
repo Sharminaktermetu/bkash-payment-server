@@ -51,7 +51,7 @@ console.log(req.body);
                     headers: await this.bkash_headers()
                 })
                 if (data && data.statusCode === '0000') {
-                    //const userId = globals.get('userId')
+                    
                     await paymentModel.create({
                         userId: Math.random() * 10 + 1 ,
                         paymentID,

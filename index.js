@@ -18,15 +18,15 @@ app.use(bodyParser.json());
 
 app.use('/api', require('./routes/routes'));
 
-const db = async () => {
-    try {
-        await mongoose.connect(process.env.db_url, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log('DB connected');
-    } catch (error) {
-        console.error('DB connection error:', error);
-    }
-};
-db();
+// const db = async () => {
+//     try {
+//         await mongoose.connect(process.env.db_url, { useNewUrlParser: true, useUnifiedTopology: true });
+//         console.log('DB connected');
+//     } catch (error) {
+//         console.error('DB connection error:', error);
+//     }
+// };
+// db();
 
 const port = process.env.PORT || 5000; // Use port 3000 if PORT is not defined in the environment
 
