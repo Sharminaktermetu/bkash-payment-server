@@ -7,21 +7,24 @@ const cors = require('cors')
 const app = express()
 
 
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}))
+const corsOptions = {
+    origin: 'http://127.0.0.1:5173',
+    credentials: true,
+};
+
+// Enable CORS with the configured options
+app.use(cors(corsOptions));
 dotEnv.config()
 app.use(body_parser.json())
 
 app.use('/api', require('./routes/routes'))
 
-const db = async()=>{
+const db = async () => {
     try {
         await mongoose.connect(process.env.db_url)
         console.log('db connect')
     } catch (error) {
-        
+
     }
 }
 db()

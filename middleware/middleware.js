@@ -17,12 +17,13 @@ class middleware {
                     password: process.env.bkash_password,
                 }
             })
+            console.log(data);
+            // globals.set('id_token', data.id_token, { protected: true })
 
-            globals.set('id_token', data.id_token, { protected: true })
-
-            next()
+            // next()
         } catch (error) {
-            return res.status(401).json({ error: error.message })
+            // return res.status(401).json({ error: error.message })
+            console.log(error.message);
         }
     }
 }
