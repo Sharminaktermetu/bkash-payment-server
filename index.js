@@ -1,35 +1,41 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const body_parser = require('body-parser')
-const dotEnv = require('dotenv')
-const cors = require('cors')
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-
-const corsOptions = {
-    origin: 'http://127.0.0.1:5173',
-    credentials: true,
-};
+// const corsOptions = {
+//     origin: 'http://localhost:5173/',
+//     credentials: true,
+// };
 
 // Enable CORS with the configured options
-app.use(cors(corsOptions));
-dotEnv.config()
-app.use(body_parser.json())
+app.use(cors());
+dotenv.config();
+app.use(bodyParser.json());
 
-app.use('/api', require('./routes/routes'))
+app.use('/api', require('./routes/routes'));
 
 const db = async () => {
     try {
-        await mongoose.connect(process.env.db_url)
-        console.log('db connect')
+        await mongoose.connect(process.env.db_url, { useNewUrlParser: true, useUnifiedTopology: true });
+        console.log('DB connected');
     } catch (error) {
-
+        console.error('DB connection error:', error);
     }
-}
-db()
-const port = process.env.PORT
+};
+db();
 
-app.get('/', (req, res) => res.send('server is running'))
+const port = process.env.PORT || 5000; // Use port 3000 if PORT is not defined in the environment
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get('/', (req, res) => res.send('Server is running'));
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
