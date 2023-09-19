@@ -43,7 +43,7 @@ console.log(req.body);
         const { paymentID, status } = req.query
 
         if (status === 'cancel' || status === 'failure') {
-            return res.redirect(`http://localhost:5173/error?message=${status}`)
+            return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${status}`)
         }
         if (status === 'success') {
             try {
@@ -60,13 +60,13 @@ console.log(req.body);
                         amount: parseInt(data.amount)
                     })
 
-                    return res.redirect(`http://localhost:5173/success`)
+                    return res.redirect(`https://bkash-payment-e5cf7.web.app/success`)
                 }else{
-                    return res.redirect(`http://localhost:5173/error?message=${data.statusMessage}`)
+                    return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${data.statusMessage}`)
                 }
             } catch (error) {
                 console.log(error)
-                return res.redirect(`http://localhost:5173/error?message=${error.message}`)
+                return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${error.message}`)
             }
         }
     }
