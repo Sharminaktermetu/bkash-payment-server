@@ -17,7 +17,7 @@ class middleware {
                     password: process.env.bkash_password,
                 }
             })
-       
+            console.log(data);
             globals.set('id_token', data.id_token, { protected: true })
             next()
 

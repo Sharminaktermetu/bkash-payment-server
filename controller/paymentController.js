@@ -22,7 +22,7 @@ console.log(req.body);
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
                 mode: '0011',
                 payerReference: " ",
-                callbackURL: 'http://localhost:5000/api/bkash/payment/callback',
+                callbackURL: 'https://payment-2zik.onrender.com/api/bkash/payment/callback',
                 amount: amount,
                 currency: "BDT",
                 intent: 'sale',
@@ -33,8 +33,8 @@ console.log(req.body);
             console.log(data);
             return res.status(200).json({ bkashURL: data.bkashURL })
         } catch (error) {
-            return res.status(401).json({ error: error.message })
             console.log(error.message)
+            return res.status(401).json({ error: error.message })
         }
 
     }

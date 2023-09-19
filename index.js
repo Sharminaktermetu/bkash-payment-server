@@ -28,7 +28,7 @@ app.use('/api', require('./routes/routes'));
 // };
 // db();
 
-const port = process.env.PORT || 5000; // Use port 3000 if PORT is not defined in the environment
+const port = process.env.PORT || 5000; 
 
 app.get('/', (req, res) => res.send('Server is running'));
 
