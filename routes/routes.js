@@ -8,7 +8,7 @@ router.get('/bkash/payment/callback',middleware.bkash_auth, paymentController.ca
 
 // router.get('/bkash/payment/callback',middleware.bkash_auth, paymentController.call_back)
 
-router.get('/bkash/payment/refund/:trxID',middleware.bkash_auth, paymentController.refund)
+// router.get('/bkash/payment/refund/:trxID',middleware.bkash_auth, paymentController.refund)
 
 
 
