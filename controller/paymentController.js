@@ -1,5 +1,4 @@
 const axios = require('axios')
-// const paymentModel = require('../model/paymentModel')
 const globals = require('node-global-storage')
 const { v4: uuidv4 } = require('uuid')
 class paymentController {
@@ -51,6 +50,7 @@ console.log(req.body);
                     headers: await this.bkash_headers()
                 })
                 if (data && data.statusCode === '0000') {
+                    
 
                     return res.redirect(`https://bkash-payment-e5cf7.web.app/success`)
                 }else{
