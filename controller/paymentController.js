@@ -52,13 +52,7 @@ console.log(req.body);
                 })
                 if (data && data.statusCode === '0000') {
                     
-                    await paymentModel.create({
-                        userId: Math.random() * 10 + 1 ,
-                        paymentID,
-                        trxID: data.trxID,
-                        date: data.paymentExecuteTime,
-                        amount: parseInt(data.amount)
-                    })
+                    
 
                     return res.redirect(`https://bkash-payment-e5cf7.web.app/success`)
                 }else{
@@ -71,30 +65,30 @@ console.log(req.body);
         }
     }
 
-    refund = async(req,res)=>{
-        const {trxID} = req.params;
+    // refund = async(req,res)=>{
+    //     const {trxID} = req.params;
 
-        try {
-            const payment = await paymentModel.findOne({trxID})
+    //     try {
+    //         const payment = await paymentModel.findOne({trxID})
 
-            const {data} = await axios.post(process.env.bkash_refund_transaction_url,{
-                paymentID : payment.paymentID,
-                amount : payment.amount,
-                trxID,
-                sku : 'payment',
-                reason : 'cashback'
-            },{
-                headers: await this.bkash_headers()
-            })
-            if (data && data.statusCode === '0000') {
-                return res.status(200).json({message : 'refund success'})
-            }else{
-                return res.status(404).json({error : 'refund failed'})
-            }
-        } catch (error) {
-            return res.status(404).json({error : 'refund failed'})
-        }
-    }
+    //         const {data} = await axios.post(process.env.bkash_refund_transaction_url,{
+    //             paymentID : payment.paymentID,
+    //             amount : payment.amount,
+    //             trxID,
+    //             sku : 'payment',
+    //             reason : 'cashback'
+    //         },{
+    //             headers: await this.bkash_headers()
+    //         })
+    //         if (data && data.statusCode === '0000') {
+    //             return res.status(200).json({message : 'refund success'})
+    //         }else{
+    //             return res.status(404).json({error : 'refund failed'})
+    //         }
+    //     } catch (error) {
+    //         return res.status(404).json({error : 'refund failed'})
+    //     }
+    // }
 }
 
 module.exports = new paymentController()
