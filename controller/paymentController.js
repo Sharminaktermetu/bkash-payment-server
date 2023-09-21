@@ -42,7 +42,7 @@ console.log(req.body);
         const { paymentID, status } = req.query
 
         if (status === 'cancel' || status === 'failure') {
-            return res.redirect(`http://localhost:5173/error?message=${status}`)
+            return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${status}`)
         }
         if (status === 'success') {
             try {
