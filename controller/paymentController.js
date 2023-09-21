@@ -21,7 +21,7 @@ console.log(req.body);
             const { data } = await axios.post(process.env.bkash_create_payment_url, {
                 mode: '0011',
                 payerReference: " ",
-                callbackURL: 'https://payment-2zik.onrender.com/api/bkash/payment/callback',
+                callbackURL: 'http://localhost:5000/api/bkash/payment/callback',
                 amount: amount,
                 currency: "BDT",
                 intent: 'sale',
@@ -42,7 +42,7 @@ console.log(req.body);
         const { paymentID, status } = req.query
 
         if (status === 'cancel' || status === 'failure') {
-            return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${status}`)
+            return res.redirect(`http://localhost:5173/error?message=${status}`)
         }
         if (status === 'success') {
             try {
@@ -52,13 +52,13 @@ console.log(req.body);
                 if (data && data.statusCode === '0000') {
                     
 
-                    return res.redirect(`https://bkash-payment-e5cf7.web.app/success`)
+                    return res.redirect(`http://localhost:5173/success`)
                 }else{
-                    return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${data.statusMessage}`)
+                    return res.redirect(`http://localhost:5173/error?message=${data.statusMessage}`)
                 }
             } catch (error) {
                 console.log(error)
-                return res.redirect(`https://bkash-payment-e5cf7.web.app/error?message=${error.message}`)
+                return res.redirect(`http://localhost:5173/error?message=${error.message}`)
             }
         }
     }

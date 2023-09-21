@@ -6,7 +6,8 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://bkash-payment-e5cf7.web.app',
+    origin: 'http://localhost:5173',
+    // origin: 'https://bkash-payment-e5cf7.web.app',
     credentials: true,
 };
 
